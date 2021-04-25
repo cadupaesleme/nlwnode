@@ -7,15 +7,13 @@ interface IUserCreate {
 }
 
 class UsersService {
+  private usersRepository: Repository<User>;
 
-  private usersRepository:Repository<User>;
-
-  constructor(){
+  constructor() {
     this.usersRepository = getCustomRepository(UsersRepository);
   }
 
   async create({ email }: IUserCreate) {
-
     //verificar se o usuario existe
     const userExists = await this.usersRepository.findOne({
       email,
@@ -35,6 +33,12 @@ class UsersService {
       return userExists;
     }
   }
+
+  // async findByEmail(email) {
+  //   return await this.usersRepository.findOne({
+  //     email,
+  //   });
+  // }
 }
 
-export {UsersService};
+export { UsersService };

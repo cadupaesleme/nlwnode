@@ -16,7 +16,7 @@ class Message {
   id: string;
 
   @Column()
-  admin_id: string;
+  admin_id?: string;
 
   @JoinColumn({ name: "user_id" })
   @ManyToOne(() => User)
